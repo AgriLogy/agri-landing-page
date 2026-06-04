@@ -1,7 +1,9 @@
 // app/providers.tsx
 'use client'
 
+import { useMemo } from 'react'
 import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react'
+import { dirFor, type Locale } from '../i18n/config'
 
 
 const config: ThemeConfig = {
@@ -43,6 +45,15 @@ const theme = extendTheme({
   },
 })
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <ChakraProvider theme={theme} >{children}</ChakraProvider>
+export function Providers({
+  children,
+  locale = 'fr',
+}: {
+  children: React.ReactNode
+  locale?: Locale
+}) {
+  const dir = dirFor(locale)
+  const dirTheme = useMemo(() => ({ ...theme, direction: dir }), [dir])
+
+  return <ChakraProvider theme={dirTheme}>{children}</ChakraProvider>
 }

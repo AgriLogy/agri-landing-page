@@ -46,6 +46,8 @@ import {
   FaWater,
 } from "react-icons/fa";
 import ContactSection from "./components/ContactSection";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import { useTranslations } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -62,16 +64,17 @@ const PARTNERS = [
 ];
 
 const PLATFORM_FEATURES = [
-  { label: "Real-Time Data Visualization", src: "/platform/1.jpeg", alt: "Real-time data dashboard", caption: "Monitor your farm data in real time with live charts and indicators." },
-  { label: "Customizable Dashboards", src: "/platform/2.jpeg", alt: "Customizable dashboards", caption: "Build dashboards that fit your workflow and key metrics." },
-  { label: "Automated Alerts and Notifications", src: "/platform/1.jpeg", alt: "Automated alerts", caption: "Get notified when thresholds are reached or action is needed." },
-  { label: "Data Integration And Historical Analysis", src: "/platform/2.jpeg", alt: "Data and analytics", caption: "Integrate all your data sources and analyze historical trends." },
-  { label: "User Management", src: "/platform/1.jpeg", alt: "User management", caption: "Manage roles, teams, and access across your organization." },
-  { label: "AI Decision Making", src: "/platform/2.jpeg", alt: "White-label platform", caption: "Customize the platform to provide a unified, branded experience for your precision agriculture applications." },
+  { key: "f1", src: "/platform/1.jpeg", alt: "Real-time data dashboard" },
+  { key: "f2", src: "/platform/2.jpeg", alt: "Customizable dashboards" },
+  { key: "f3", src: "/platform/1.jpeg", alt: "Automated alerts" },
+  { key: "f4", src: "/platform/2.jpeg", alt: "Data and analytics" },
+  { key: "f5", src: "/platform/1.jpeg", alt: "User management" },
+  { key: "f6", src: "/platform/2.jpeg", alt: "White-label platform" },
 ];
 
 export default function AgrilogyLanding() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const t = useTranslations();
 
   // Color mode values
   const bgColor = useColorModeValue("white", "gray.900");
@@ -191,7 +194,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600" }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Home
+                {t("nav.home")}
               </Link>
               <Link
                 href="#about"
@@ -208,7 +211,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                About us
+                {t("nav.about")}
               </Link>
               <Link
                 href="#services"
@@ -225,7 +228,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Services
+                {t("nav.services")}
               </Link>
               <Link
                 href="#products"
@@ -242,7 +245,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Products
+                {t("nav.products")}
               </Link>
               <Link
                 href="#platform"
@@ -259,7 +262,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Platform
+                {t("nav.platform")}
               </Link>
               <Link
                 href="#industry"
@@ -276,7 +279,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Industry 4.0
+                {t("nav.industry")}
               </Link>
               <Link
                 href="#equipment"
@@ -293,7 +296,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Equipment
+                {t("nav.equipment")}
               </Link>
               <Link
                 href="#partners"
@@ -310,7 +313,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Partners
+                {t("nav.partners")}
               </Link>
               <Link
                 href="#contact"
@@ -327,7 +330,7 @@ export default function AgrilogyLanding() {
                 _hover={{ bg: navLinkHoverBg, color: "green.600", opacity: 1 }}
                 transition="background 0.2s, color 0.2s, border-color 0.2s"
               >
-                Contact
+                {t("nav.contact")}
               </Link>
             </HStack>
 
@@ -342,16 +345,7 @@ export default function AgrilogyLanding() {
                 borderRadius="md"
                 _hover={{ bg: navLinkHoverBg }}
               />
-              <Button
-                size="sm"
-                leftIcon={<Image src="/img/mamoroccoflag_111704.png" w="20px" alt="" />}
-                colorScheme="green"
-                variant="outline"
-                borderRadius="md"
-                _hover={{ bg: navLinkHoverBg }}
-              >
-                MA
-              </Button>
+              <LanguageSwitcher />
             </HStack>
           </Flex>
         </Container>
@@ -385,21 +379,21 @@ export default function AgrilogyLanding() {
               >
                 <VStack spacing={6} textAlign="center" color="white" px={4}>
                   <Badge colorScheme="whiteAlpha" fontSize="xs" letterSpacing="wider" textTransform="uppercase" px={3} py={1} borderRadius="full">
-                    Smart Agriculture
+                    {t("hero.badge")}
                   </Badge>
                   <Heading size={{ base: "xl", md: "2xl" }} fontWeight="700" letterSpacing="tight">
-                    Welcome to Agrogo
+                    {t("hero.title")}
                   </Heading>
                   <Text fontSize={{ base: "lg", md: "xl" }} maxW="560px" opacity={0.95}>
-                    Smart solutions for modern agriculture
+                    {t("hero.subtitle")}
                   </Text>
                   <Link href="#about">
                     <Button colorScheme="green" size="lg" borderRadius="xl" px={8} _hover={{ transform: "scale(1.02)" }} transition="transform 0.2s">
-                      Learn More
+                      {t("hero.learnMore")}
                     </Button>
                   </Link>
                   <Text fontSize="xs" opacity={0.8} letterSpacing="wider">
-                    Trusted by industry leaders
+                    {t("hero.trusted")}
                   </Text>
                 </VStack>
               </Box>
@@ -410,11 +404,11 @@ export default function AgrilogyLanding() {
               <Image src="/img/Picture1.jpg" alt="Agriculture" w="100%" h="100%" objectFit="cover" />
               <Box position="absolute" inset={0} bg="blackAlpha.600" display="flex" alignItems="center" justifyContent="center">
                 <VStack spacing={6} textAlign="center" color="white" px={4}>
-                  <Heading size={{ base: "xl", md: "2xl" }} fontWeight="700">IoT & Smart Irrigation</Heading>
-                  <Text fontSize={{ base: "lg", md: "xl" }} maxW="560px">Precision farming with data-driven decisions.</Text>
+                  <Heading size={{ base: "xl", md: "2xl" }} fontWeight="700">{t("hero.slide2Title")}</Heading>
+                  <Text fontSize={{ base: "lg", md: "xl" }} maxW="560px">{t("hero.slide2Text")}</Text>
                   <Link href="#products">
                     <Button colorScheme="green" size="lg" borderRadius="xl" px={8} _hover={{ transform: "scale(1.02)" }} transition="transform 0.2s">
-                      Our Products
+                      {t("hero.ourProducts")}
                     </Button>
                   </Link>
                 </VStack>
@@ -426,11 +420,11 @@ export default function AgrilogyLanding() {
               <Image src="/img/Picture1.jpg" alt="Green fields" w="100%" h="100%" objectFit="cover" />
               <Box position="absolute" inset={0} bg="blackAlpha.600" display="flex" alignItems="center" justifyContent="center">
                 <VStack spacing={6} textAlign="center" color="white" px={4}>
-                  <Heading size={{ base: "xl", md: "2xl" }} fontWeight="700">Sustainable Agriculture</Heading>
-                  <Text fontSize={{ base: "lg", md: "xl" }} maxW="560px">From study to implementation — we support you at every step.</Text>
+                  <Heading size={{ base: "xl", md: "2xl" }} fontWeight="700">{t("hero.slide3Title")}</Heading>
+                  <Text fontSize={{ base: "lg", md: "xl" }} maxW="560px">{t("hero.slide3Text")}</Text>
                   <Link href="#contact">
                     <Button colorScheme="green" size="lg" borderRadius="xl" px={8} _hover={{ transform: "scale(1.02)" }} transition="transform 0.2s">
-                      Contact Us
+                      {t("hero.contactUs")}
                     </Button>
                   </Link>
                 </VStack>
@@ -447,41 +441,36 @@ export default function AgrilogyLanding() {
           <VStack spacing={10} align="stretch">
             <Box>
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Who we are
+                {t("sections.aboutEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>About Us</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.aboutTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" />
             </Box>
 
             <Text fontSize="lg" lineHeight="tall" maxW="4xl">
-              <Text as="span" fontWeight="bold" color="green.600">
-                Agrogo
-              </Text>{" "}
-              is a leading technology company specializing in the development of
-              smart, integrated solutions that combine Internet of Things (IoT),
-              electromechanical systems, and web and mobile applications to
-              address critical challenges in key sectors such as agriculture,
-              water management, energy, and the environment. At AGROGO, we merge
-              engineering, software development, and environmental innovation to
-              deliver modern products and services that help individuals and
-              organizations improve operational efficiency and make data-driven
-              decisions.
+              {t.rich("about.intro", {
+                b: (chunks) => (
+                  <Text as="span" fontWeight="bold" color="green.600">
+                    {chunks}
+                  </Text>
+                ),
+              })}
             </Text>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} w="100%">
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <Heading size="md" color="green.600">Products</Heading>
+                  <Heading size="md" color="green.600">{t("about.productsTitle")}</Heading>
                 </CardHeader>
                 <CardBody pt={0}>
                   <VStack align="start" spacing={3}>
                     <HStack align="start" spacing={3}>
                       <Icon as={FaCheck} color="green.500" mt={0.5} />
-                      <Text>Smart irrigation and watering system based on IoT technology</Text>
+                      <Text>{t("about.product1")}</Text>
                     </HStack>
                     <HStack align="start" spacing={3}>
                       <Icon as={FaCheck} color="green.500" mt={0.5} />
-                      <Text>Irrigation devices and accessories</Text>
+                      <Text>{t("about.product2")}</Text>
                     </HStack>
                   </VStack>
                 </CardBody>
@@ -489,17 +478,17 @@ export default function AgrilogyLanding() {
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <Heading size="md" color="green.600">Services</Heading>
+                  <Heading size="md" color="green.600">{t("about.servicesTitle")}</Heading>
                 </CardHeader>
                 <CardBody pt={0}>
                   <VStack align="start" spacing={3}>
                     <HStack align="start" spacing={3}>
                       <Icon as={FaCheck} color="green.500" mt={0.5} />
-                      <Text>Maintenance and installation of smart irrigation (IoT)</Text>
+                      <Text>{t("about.service1")}</Text>
                     </HStack>
                     <HStack align="start" spacing={3}>
                       <Icon as={FaCheck} color="green.500" mt={0.5} />
-                      <Text>Installation and maintenance of solar pumping system</Text>
+                      <Text>{t("about.service2")}</Text>
                     </HStack>
                   </VStack>
                 </CardBody>
@@ -526,9 +515,9 @@ export default function AgrilogyLanding() {
             <VStack spacing={12}>
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.500" textTransform="uppercase" mb={1}>
-                What we offer
+                {t("sections.servicesEyebrow")}
               </Text>
-              <Heading size="xl" color="white" mb={2}>Our Services</Heading>
+              <Heading size="xl" color="white" mb={2}>{t("sections.servicesTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
 
@@ -539,9 +528,9 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaLeaf} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Studies & Sustainable Solutions</Heading>
+                    <Heading size="sm" color="green.600">{t("services.card1Title")}</Heading>
                     <Text fontSize="sm" color={textColor} opacity={0.9}>
-                      Agricultural projects: irrigation, production, solar energy
+                      {t("services.card1Text")}
                     </Text>
                   </VStack>
                 </CardBody>
@@ -553,9 +542,9 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaWrench} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Installation Services</Heading>
+                    <Heading size="sm" color="green.600">{t("services.card2Title")}</Heading>
                     <Text fontSize="sm" color={textColor} opacity={0.9}>
-                      Irrigation systems, solar pumping solutions, and IoT integration
+                      {t("services.card2Text")}
                     </Text>
                   </VStack>
                 </CardBody>
@@ -567,9 +556,9 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaChartLine} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Precision Agriculture</Heading>
+                    <Heading size="sm" color="green.600">{t("services.card3Title")}</Heading>
                     <Text fontSize="sm" color={textColor} opacity={0.9}>
-                      Advanced farming techniques using IoT and data analytics
+                      {t("services.card3Text")}
                     </Text>
                   </VStack>
                 </CardBody>
@@ -581,9 +570,9 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaBuilding} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Green Spaces Management</Heading>
+                    <Heading size="sm" color="green.600">{t("services.card4Title")}</Heading>
                     <Text fontSize="sm" color={textColor} opacity={0.9}>
-                      Comprehensive management solutions for green spaces
+                      {t("services.card4Text")}
                     </Text>
                   </VStack>
                 </CardBody>
@@ -600,9 +589,9 @@ export default function AgrilogyLanding() {
           <VStack spacing={12}>
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Solutions
+                {t("sections.productsEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>Products</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.productsTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
 
@@ -613,8 +602,8 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaWifi} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">IoT Sensors</Heading>
-                    <Text fontSize="sm">Weather stations, soil sensors, and environmental monitoring devices</Text>
+                    <Heading size="sm" color="green.600">{t("products.sensorsTitle")}</Heading>
+                    <Text fontSize="sm">{t("products.sensorsText")}</Text>
                   </VStack>
                 </CardBody>
               </Card>
@@ -625,8 +614,8 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaCog} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Irrigation Controllers</Heading>
-                    <Text fontSize="sm">Smart controllers for automated irrigation management</Text>
+                    <Heading size="sm" color="green.600">{t("products.controllersTitle")}</Heading>
+                    <Text fontSize="sm">{t("products.controllersText")}</Text>
                   </VStack>
                 </CardBody>
               </Card>
@@ -637,8 +626,8 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaMobile} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Smart Farming Web App</Heading>
-                    <Text fontSize="sm">Comprehensive web application for farm management</Text>
+                    <Heading size="sm" color="green.600">{t("products.webappTitle")}</Heading>
+                    <Text fontSize="sm">{t("products.webappText")}</Text>
                   </VStack>
                 </CardBody>
               </Card>
@@ -650,15 +639,15 @@ export default function AgrilogyLanding() {
                 <CardBody p={6} display="flex" flexDirection="column" flex={1}>
                   <VStack align="stretch" spacing={4} flex={1}>
                     <Heading size="sm" color="green.600" textDecoration="underline" textUnderlineOffset={4} textDecorationColor="green.400">
-                      Agrilogy Mini
+                      {t("products.miniTitle")}
                     </Heading>
                     <Box pl={3} borderLeft="3px solid" borderColor="green.400" py={1}>
                       <Text fontSize="sm" lineHeight="tall">
-                        An irrigation device installed in the garden and linked with a mobile application, allowing you to control and monitor the irrigation process remotely.
+                        {t("products.miniText")}
                       </Text>
                     </Box>
                     <Button colorScheme="green" variant="solid" as="a" href="#contact" borderRadius="xl" size="md" mt="auto" w="40%" alignSelf="center">
-                      Contact Us
+                      {t("cta.contactUs")}
                     </Button>
                   </VStack>
                 </CardBody>
@@ -669,18 +658,18 @@ export default function AgrilogyLanding() {
                 <CardBody p={6} display="flex" flexDirection="column" flex={1}>
                   <VStack align="stretch" spacing={4} flex={1}>
                     <Heading size="sm" color="green.600" textDecoration="underline" textUnderlineOffset={4} textDecorationColor="green.400">
-                      Agrilogy Pro
+                      {t("products.proTitle")}
                     </Heading>
-                    <Text fontSize="sm">An irrigation device installed in farms, allowing farmers through mobile or laptop application to get:</Text>
+                    <Text fontSize="sm">{t("products.proIntro")}</Text>
                     <Box pl={3} borderLeft="3px solid" borderColor="green.400" py={1}>
                       <VStack align="start" spacing={2} fontSize="sm">
-                        <Text><strong>1. Irrigation Schedules:</strong> Gives irrigation schedules, saving water while keeping crops healthier.</Text>
-                        <Text><strong>2. Conserve & Connect:</strong> Optimizes water use to reduce needless waste.</Text>
-                        <Text><strong>3. Control From Anywhere:</strong> Control watering from anywhere with the easy-to-use app.</Text>
+                        <Text><strong>{t("products.pro1Label")}</strong> {t("products.pro1Text")}</Text>
+                        <Text><strong>{t("products.pro2Label")}</strong> {t("products.pro2Text")}</Text>
+                        <Text><strong>{t("products.pro3Label")}</strong> {t("products.pro3Text")}</Text>
                       </VStack>
                     </Box>
                     <Button colorScheme="green" variant="solid" as="a" href="#contact" borderRadius="xl" size="md" mt="auto" w="40%" alignSelf="center">
-                      Contact Us
+                      {t("cta.contactUs")}
                     </Button>
                   </VStack>
                 </CardBody>
@@ -696,40 +685,40 @@ export default function AgrilogyLanding() {
           <VStack spacing={12}>
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Technology
+                {t("sections.platformEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>Agrilogy Platform</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.platformTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
 
             <Text fontSize="lg" textAlign="center" maxW="4xl" color={textColor} opacity={0.9}>
-              Agrilogy platform is a smart web application for irrigation and fertilization management. It collects sensor data and transforms it into accurate indicators to support better decision-making.
+              {t("platform.intro")}
             </Text>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <Heading size="md" color="green.600">Key Features</Heading>
+                  <Heading size="md" color="green.600">{t("platform.keyFeaturesTitle")}</Heading>
                 </CardHeader>
                 <CardBody pt={0}>
                   <VStack align="start" spacing={3}>
-                    <HStack align="start" spacing={3}><Icon as={FaChartLine} color="green.500" mt={0.5} /><Text fontSize="sm">Real-time monitoring of soil and climate conditions</Text></HStack>
-                    <HStack align="start" spacing={3}><Icon as={FaWater} color="green.500" mt={0.5} /><Text fontSize="sm">Scheduling and management of irrigation and fertilization based on scientific standards</Text></HStack>
-                    <HStack align="start" spacing={3}><Icon as={FaBell} color="green.500" mt={0.5} /><Text fontSize="sm">Smart alerts when action is needed or risks are detected</Text></HStack>
-                    <HStack align="start" spacing={3}><Icon as={FaCog} color="green.500" mt={0.5} /><Text fontSize="sm">Remote control of pumps and irrigation systems</Text></HStack>
+                    <HStack align="start" spacing={3}><Icon as={FaChartLine} color="green.500" mt={0.5} /><Text fontSize="sm">{t("platform.feature1")}</Text></HStack>
+                    <HStack align="start" spacing={3}><Icon as={FaWater} color="green.500" mt={0.5} /><Text fontSize="sm">{t("platform.feature2")}</Text></HStack>
+                    <HStack align="start" spacing={3}><Icon as={FaBell} color="green.500" mt={0.5} /><Text fontSize="sm">{t("platform.feature3")}</Text></HStack>
+                    <HStack align="start" spacing={3}><Icon as={FaCog} color="green.500" mt={0.5} /><Text fontSize="sm">{t("platform.feature4")}</Text></HStack>
                   </VStack>
                 </CardBody>
               </Card>
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <Heading size="md" color="green.600">Benefits</Heading>
+                  <Heading size="md" color="green.600">{t("platform.benefitsTitle")}</Heading>
                 </CardHeader>
                 <CardBody pt={0}>
                   <VStack align="start" spacing={3}>
-                    <Text fontSize="sm"><strong>Water and fertilizer consumption analysis</strong> to improve efficiency and reduce costs.</Text>
-                    <Text fontSize="sm">With the integration of <Text as="span" color="green.600" fontWeight="semibold">IoT and Artificial Intelligence</Text>, we help you achieve more productive and sustainable farming.</Text>
-               
+                    <Text fontSize="sm">{t.rich("platform.benefit1", { b: (chunks) => <strong>{chunks}</strong> })}</Text>
+                    <Text fontSize="sm">{t.rich("platform.benefit2", { b: (chunks) => <Text as="span" color="green.600" fontWeight="semibold">{chunks}</Text> })}</Text>
+
                   </VStack>
                 </CardBody>
               </Card>
@@ -744,7 +733,7 @@ export default function AgrilogyLanding() {
                 borderRadius="xl"
                 px={8}
               >
-                Book a Demo
+                {t("cta.bookDemo")}
               </Button>
             </Box>
           </VStack>
@@ -756,7 +745,7 @@ export default function AgrilogyLanding() {
         <Box w="60%" h="1px" bgGradient="linear(to-r, transparent, green.400, transparent)" mx="auto" mb={6} flexShrink={0} opacity={0.7} />
         <Box textAlign="center" mb={6}>
           <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-            Platform capabilities
+            {t("sections.capabilitiesEyebrow")}
           </Text>
         </Box>
         <Container maxW="full"  w="100%" px={{ base: 0, md: 8 }}>
@@ -771,7 +760,7 @@ export default function AgrilogyLanding() {
             <VStack align="stretch" spacing={4} flex={1} maxW={{ lg: "420px" }} w="100%">
               {PLATFORM_FEATURES.map((feature, index) => (
                 <Button
-                  key={feature.label}
+                  key={feature.key}
                   variant={activePlatformFeature === index ? "solid" : "outline"}
                   colorScheme="green"
                   size="lg"
@@ -787,7 +776,7 @@ export default function AgrilogyLanding() {
                   _hover={{ bg: activePlatformFeature === index ? "green.600" : "green.50" }}
                   _dark={{ _hover: { bg: activePlatformFeature === index ? "green.600" : "whiteAlpha.100" } }}
                 >
-                  {feature.label}
+                  {t(`platformFeatures.${feature.key}Label`)}
                 </Button>
               ))}
             </VStack>
@@ -822,7 +811,7 @@ export default function AgrilogyLanding() {
                 maxW="480px"
                 px={2}
               >
-                {PLATFORM_FEATURES[activePlatformFeature].caption}
+                {t(`platformFeatures.${PLATFORM_FEATURES[activePlatformFeature].key}Caption`)}
               </Text>
             </Box>
           </Flex>
@@ -835,14 +824,14 @@ export default function AgrilogyLanding() {
           <VStack spacing={12}>
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Expertise
+                {t("sections.industryEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>Industry 4.0 Expertise</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.industryTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
 
             <Text fontSize="lg" textAlign="center" maxW="4xl" color={textColor} opacity={0.9}>
-              We are committed to supporting you at every stage of your project, from study and design to manufacturing and implementation. With our multidisciplinary expertise, we develop advanced, functional prototypes that integrate cutting-edge technologies, customized to meet your specific needs.
+              {t("industry.intro")}
             </Text>
 
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mb={8}>
@@ -852,8 +841,8 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaLeaf} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Study & Design</Heading>
-                    <Text fontSize="sm">Comprehensive project analysis and innovative design solutions</Text>
+                    <Heading size="sm" color="green.600">{t("industry.studyTitle")}</Heading>
+                    <Text fontSize="sm">{t("industry.studyText")}</Text>
                   </VStack>
                 </CardBody>
               </Card>
@@ -864,101 +853,101 @@ export default function AgrilogyLanding() {
                     <Box p={3} borderRadius="xl" bg={useColorModeValue("green.50", "whiteAlpha.100")}>
                       <Icon as={FaCog} boxSize={8} color="green.500" />
                     </Box>
-                    <Heading size="sm" color="green.600">Creation & Adaptation</Heading>
-                    <Text fontSize="sm">Custom manufacturing and tailored implementation</Text>
+                    <Heading size="sm" color="green.600">{t("industry.createTitle")}</Heading>
+                    <Text fontSize="sm">{t("industry.createText")}</Text>
                   </VStack>
                 </CardBody>
               </Card>
             </SimpleGrid>
 
             <Text fontSize="lg" textAlign="center" color="green.600" fontWeight="semibold" mb={4}>
-              At Agrogo, our team unites diverse expertise to deliver innovative, tailored solutions for your needs.
+              {t("industry.teamLine")}
             </Text>
 
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaMicrochip} color="green.500" /><Heading size="sm" color="green.600">Electronics</Heading></HStack>
+                  <HStack><Icon as={FaMicrochip} color="green.500" /><Heading size="sm" color="green.600">{t("industry.electronicsTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <List spacing={2} fontSize="sm">
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />PCB design</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />PCB printing</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Component placement</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Testing & validation</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.electronics1")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.electronics2")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.electronics3")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.electronics4")}</ListItem>
                   </List>
                 </CardBody>
               </Card>
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaCog} color="green.500" /><Heading size="sm" color="green.600">Automation</Heading></HStack>
+                  <HStack><Icon as={FaCog} color="green.500" /><Heading size="sm" color="green.600">{t("industry.automationTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <List spacing={2} fontSize="sm">
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Integration of PLCs</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />PLC repair</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Preventive maintenance</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.automation1")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.automation2")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.automation3")}</ListItem>
                   </List>
                 </CardBody>
               </Card>
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaCube} color="green.500" /><Heading size="sm" color="green.600">3D Design & Printing</Heading></HStack>
+                  <HStack><Icon as={FaCube} color="green.500" /><Heading size="sm" color="green.600">{t("industry.design3dTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <List spacing={2} fontSize="sm">
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />3D modeling</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />3D design</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Model prototyping</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />3D simulation</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />High-quality 3D printing</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.design3d1")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.design3d2")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.design3d3")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.design3d4")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.design3d5")}</ListItem>
                   </List>
                 </CardBody>
               </Card>
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaWrench} color="green.500" /><Heading size="sm" color="green.600">Machining</Heading></HStack>
+                  <HStack><Icon as={FaWrench} color="green.500" /><Heading size="sm" color="green.600">{t("industry.machiningTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <List spacing={2} fontSize="sm">
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Precision machining of custom parts</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />High-quality component manufacturing</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.machining1")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.machining2")}</ListItem>
                   </List>
                 </CardBody>
               </Card>
 
               <Card {...modernCard}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaMobile} color="green.500" /><Heading size="sm" color="green.600">App Development</Heading></HStack>
+                  <HStack><Icon as={FaMobile} color="green.500" /><Heading size="sm" color="green.600">{t("industry.appDevTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <List spacing={2} fontSize="sm">
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Mobile app & web development</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />IT infrastructure</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />System integration</ListItem>
-                    <ListItem><ListIcon as={FaCheck} color="green.500" />Embedded systems</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.appDev1")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.appDev2")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.appDev3")}</ListItem>
+                    <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.appDev4")}</ListItem>
                   </List>
                 </CardBody>
               </Card>
 
               <Card {...modernCard} gridColumn={{ base: "1", lg: "1 / -1" }}>
                 <CardHeader pb={2}>
-                  <HStack><Icon as={FaWifi} color="green.500" /><Heading size="sm" color="green.600">IoT Systems</Heading></HStack>
+                  <HStack><Icon as={FaWifi} color="green.500" /><Heading size="sm" color="green.600">{t("industry.iotTitle")}</Heading></HStack>
                 </CardHeader>
                 <CardBody pt={0}>
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                     <List spacing={2} fontSize="sm">
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Design and deployment of IoT-based solutions</ListItem>
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Integration of sensors and actuators</ListItem>
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Wired & Wireless data communication</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot1")}</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot2")}</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot3")}</ListItem>
                     </List>
                     <List spacing={2} fontSize="sm">
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Real-time monitoring and control</ListItem>
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Cloud connectivity and dashboards</ListItem>
-                      <ListItem><ListIcon as={FaCheck} color="green.500" />Maintenance and troubleshooting of IoT networks</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot4")}</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot5")}</ListItem>
+                      <ListItem><ListIcon as={FaCheck} color="green.500" />{t("industry.iot6")}</ListItem>
                     </List>
                   </SimpleGrid>
                 </CardBody>
@@ -974,9 +963,9 @@ export default function AgrilogyLanding() {
           <VStack spacing={12}>
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Hardware
+                {t("sections.equipmentEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>Equipment</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.equipmentTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
 
@@ -984,8 +973,8 @@ export default function AgrilogyLanding() {
               <Card {...modernCard}>
                 <CardBody p={6}>
                   <VStack align="start" spacing={4}>
-                    <Heading size="sm" color="green.600">Enhancing Water Management in Agriculture with AGRILOGY Weather Stations</Heading>
-                    <Text fontSize="sm">Because of climate change in agriculture, we need to know how much water plants need. The AGRILOGY weather stations allow us to know farm water needs precisely, helping optimize irrigation schedules and resource management.</Text>
+                    <Heading size="sm" color="green.600">{t("equipment.card1Title")}</Heading>
+                    <Text fontSize="sm">{t("equipment.card1Text")}</Text>
                     <Image src="/img/image 8.jpg" alt="Weather Station" borderRadius="xl" w="100%" />
                   </VStack>
                 </CardBody>
@@ -994,9 +983,9 @@ export default function AgrilogyLanding() {
               <Card {...modernCard}>
                 <CardBody p={6}>
                   <VStack align="start" spacing={4}>
-                    <Heading size="sm" color="green.600">Optimizing Irrigation Processes and Resource Efficiency with Agrilogy Sensors</Heading>
-                    <Text fontSize="sm">For the success of the irrigation process without wasting resources and water, Agrilogy sensors monitor soil changes and development, providing important information for successful agriculture.</Text>
-                    <Text fontSize="sm"><strong>Features:</strong> Better management of water and effective management of fertilizers.</Text>
+                    <Heading size="sm" color="green.600">{t("equipment.card2Title")}</Heading>
+                    <Text fontSize="sm">{t("equipment.card2Text")}</Text>
+                    <Text fontSize="sm">{t.rich("equipment.card2Features", { b: (chunks) => <strong>{chunks}</strong> })}</Text>
                     <Image src="/img/image 7.jpg" alt="Sensors" borderRadius="xl" w="100%" />
                   </VStack>
                 </CardBody>
@@ -1013,9 +1002,9 @@ export default function AgrilogyLanding() {
           <VStack spacing={12} align="stretch">
             <Box textAlign="center">
               <Text fontSize="xs" fontWeight="semibold" letterSpacing="wider" color="green.600" textTransform="uppercase" mb={1}>
-                Trusted by
+                {t("sections.partnersEyebrow")}
               </Text>
-              <Heading size="xl" color="green.600" mb={2}>Partners</Heading>
+              <Heading size="xl" color="green.600" mb={2}>{t("sections.partnersTitle")}</Heading>
               <Box w="48px" h="1" bg="green.500" borderRadius="full" mx="auto" />
             </Box>
           <Flex
@@ -1063,13 +1052,13 @@ export default function AgrilogyLanding() {
 
             <VStack flex={{ base: "1", lg: "1" }} align={{ base: "center", lg: "flex-start" }} textAlign={{ base: "center", lg: "left" }} spacing={6} maxW={{ lg: "420px" }}>
               <Heading size="lg" lineHeight="tall">
-                Proven <Text as="span" color="green.600">Success</Text> in the Field
+                {t.rich("partners.successTitle", { b: (chunks) => <Text as="span" color="green.600">{chunks}</Text> })}
               </Heading>
               <Text color={textColor} fontSize="md" opacity={0.9}>
-              Agrogo works with clients ranging from small-scale farmers to large agricultural enterprises, helping them streamline operations, improve efficiency, and consistently achieve higher crop yields through smarter, data-driven decisions.
+              {t("partners.successText")}
               </Text>
               <Button as="a" href="#contact" colorScheme="green" size="lg" borderRadius="xl" px={8} _hover={{ transform: "scale(1.02)" }} transition="transform 0.2s">
-                Contact Us
+                {t("cta.contactUs")}
               </Button>
             </VStack>
           </Flex>
@@ -1094,7 +1083,7 @@ export default function AgrilogyLanding() {
         <Container maxW="6xl">
           <Flex justify="space-between" align="center" direction={{ base: "column", md: "row" }} gap={4}>
             <Text fontSize="sm">
-              Copyright © <Text as="span" color="green.600" fontWeight="semibold">Agroro</Text> — 2026 All rights reserved.
+              {t.rich("footer.copyright", { b: (chunks) => <Text as="span" color="green.600" fontWeight="semibold">{chunks}</Text> })}
             </Text>
             <HStack spacing={4}>
               <Link href="https://www.facebook.com/p/Agrogo-%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9-%D9%88%D8%A5%D9%86%D8%AC%D8%A7%D8%B2-%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9-%D8%A7%D9%84%D8%B3%D9%82%D9%8A-%D8%A7%D9%84%D8%B0%D9%83%D9%8A-%D9%88%D8%A7%D9%84%D8%B7%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%B4%D9%85%D8%B3%D9%8A%D8%A9-100092259103519/" isExternal>
